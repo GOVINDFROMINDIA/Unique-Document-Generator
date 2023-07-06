@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Document Generator</title>
+    <style>
+        body {
+            text-align: center;
+            margin-top: 50px;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="file"],
+        input[type="number"],
+        input[type="email"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        input[type="submit"] {
+            background-color: blue;
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Document Generator</h2>
+        <form id="generatorForm" onsubmit="return generateDocument()">
+            <label for="document">Upload Document</label>
+            <input type="file" id="document" required accept=".doc, .docx">
+
+            <label for="numRoots">Number of Roots</label>
+            <input type="number" id="numRoots" required>
+
+            <div id="rootsContainer"></div>
+
+            <input type="submit" value="Generate">
+        </form>
+    </div>
+
+    <script>
+        function generateDocument() {
+            var documentFile = document.getElementById("document").files[0];
+            var numRoots = document.getElementById("numRoots").value;
+
+            if (!documentFile) {
+                alert("Please select a document file.");
+                return false;
+            }
+
+            if (!numRoots || numRoots <= 0) {
+                alert("Please enter a valid number of roots.");
+                return false;
+            }
+
+            var rootsContainer = document.getElementById("rootsContainer");
+            rootsContainer.innerHTML = "";
+
+            for (var i = 0; i < numRoots; i++) {
+                var label = document.createElement("label");
+                label.innerHTML = "Root " + (i + 1) + " Email";
+                rootsContainer.appendChild(label);
+
+                var input = document.createElement("input");
+                input.type = "email";
+                input.required = true;
+                rootsContainer.appendChild(input);
+            }
+
+            alert("Document generation successful!");
+            return false;
+        }
+    </script>
+</body>
+</html>
