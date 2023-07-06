@@ -38,13 +38,24 @@
             border-radius: 3px;
         }
 
-        input[type="submit"] {
+        input[type="submit"],
+        .back-button {
             background-color: blue;
             color: white;
             border: none;
             padding: 10px 16px;
             cursor: pointer;
             border-radius: 3px;
+        }
+
+        input[type="submit"].generate-button {
+            background-color: green;
+        }
+
+        .back-button {
+            margin-top: 10px;
+            background-color: blue;
+            margin-bottom: 5px;
         }
     </style>
 </head>
@@ -60,8 +71,10 @@
 
             <div id="rootsContainer"></div>
 
-            <input type="submit" value="Generate">
+            <input type="submit" value="Generate" class="generate-button">
         </form>
+
+        <button class="back-button" onclick="goToDashboard()">Back to Dashboard</button>
     </div>
 
     <script>
@@ -95,6 +108,10 @@
 
             alert("Document generation successful!");
             return false;
+        }
+
+        function goToDashboard() {
+            window.location.href = "dashboard.html";
         }
     </script>
 </body>
